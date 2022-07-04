@@ -19,7 +19,7 @@ def login(token):
     }
     head["Authorization"] = "Bearer " + token
     suiteid = 'SUITE4761'
-    pes = s.post('https://preprod.flinko.com:8109/optimize/v1/dashboard/execution/suite/' + suiteid, headers=head)
+    pes = s.post('http://10.10.10.172:8109/optimize/v1/dashboard/execution/suite/' + suiteid, headers=head)
     out = json.loads(pes.content)
     exid = out['responseObject']['id']
 
@@ -27,13 +27,13 @@ def login(token):
     time.sleep(3)
     sc = 0
     while (sc < 1):
-        r1 = s.get('https://preprod.flinko.com:8109/optimize/v1/dashboard/execution/' + exid, headers=head)
+        r1 = s.get('http://10.10.10.172:8109/optimize/v1/dashboard/execution/' + exid, headers=head)
         c1 = json.loads(r1.content)
         fr1 = c1['responseObject']['executionStatus']
         print('status : ' + fr1 + '......')
         if (fr1 == "Completed" or fr1 == "Terminated" or fr1 == "Warning"):
             if fr1 == 'Completed':
-                r2 = s.get('https://preprod.flinko.com:8110/optimize/v1/executionResponse/result/' + exid, headers=head)
+                r2 = s.get('http://10.10.10.172:8110/optimize/v1/executionResponse/result/' + exid, headers=head)
                 c2 = json.loads(r2.content)
                 fr2 = c2['responseObject']['suiteStatus']
                 if fr2 == 'FAIL':
