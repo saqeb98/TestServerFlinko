@@ -18,7 +18,7 @@ def login(token):
         "Content-Type": "application/json"
     }
     head["Authorization"] = "Bearer " + token
-    suiteid = 'SUITE1014'
+    suiteid = 'SUITE4761'
     pes = s.post('https://preprod.flinko.com:8109/optimize/v1/dashboard/execution/suite/' + suiteid, headers=head)
     out = json.loads(pes.content)
     exid = out['responseObject']['id']
