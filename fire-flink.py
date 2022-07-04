@@ -18,7 +18,7 @@ def login(token):
         "Content-Type": "application/json"
     }
     head["Authorization"] = "Bearer " + token
-    suiteid = 'SUITE1013'
+    suiteid = 'SUITE1014'
     pes = s.post('http://10.10.10.172:8109/optimize/v1/dashboard/execution/suite/' + suiteid, headers=head)
     out = json.loads(pes.content)
     exid = out['responseObject']['id']
